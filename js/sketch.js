@@ -9,10 +9,12 @@
 let ourText = "Hello World!";
 
 function setup() {
+  // place comment here
   createCanvas(400, 400);
 }
 
 function draw() {
+  // place comment here
   background(220);
   fill(0);
   textSize(32);
