@@ -71,3 +71,5 @@ function draw() {
   noStroke()
   fill(yourColor)
   ellipse(paletX, paletY, palletW * 2)
+  
+  
