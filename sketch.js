@@ -71,5 +71,44 @@ function draw() {
   noStroke()
   fill(yourColor)
   ellipse(paletX, paletY, palletW * 2)
-  
+
+  //   pallet computer
+  noStroke()
+  fill(colorComputer)
+  ellipse(compX, compY, palletW * 2)
+
+  // trace bal, angle
+  append(trace, Ball[0].x)
+  append(trace, Ball[0].y)
+  if (trace.length >= 5) {
+
+    vbp1 = createVector(paletX - Ball[0].x, paletY - Ball[0].y)
+    vb1 = createVector(trace[0] - trace[trace.length - 2], trace[1] - trace[trace.length - 1])
+    angle = vbp1.angleBetween(vb1)
+    vector = createVector(-1, 0)
+    differentA = vbp1.angleBetween(vector)
+
+  }
+  //   collide pallet
+
+  if (dist(paletX, paletY, Ball[0].x, Ball[0].y) <= Ball[0].w + palletW & botsen == true) {
+    if (differentA < 90 && differentA > 0 || differentA > -180 && differentA < -90) {
+      newDirection = 90 - angle + differentA
+    }
+    if (differentA <= 180 && differentA >= 90 || differentA >= -90 && differentA <= 0) {
+      newDirection = 90 - angle + differentA + 180
+    }
+
+    botsen = false
+    setTimeout(Botsen, 500)
+  }
+
+  //collide computer
+  if (trace.length >= 5) {
+    vcb1 = createVector(compX - Ball[0].x, compY - Ball[0].y)
+    vb1 = createVector(trace[0] - trace[trace.length - 2], trace[1] - trace[trace.length - 1])
+    angle = vcb1.angleBetween(vb1)
+    vector = createVector(-1, 0)
+    differentB = vcb1.angleBetween(vector)
+    trace = subset(trace, 2, 4)
   
