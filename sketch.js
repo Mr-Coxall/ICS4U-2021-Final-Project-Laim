@@ -111,4 +111,45 @@ function draw() {
     vector = createVector(-1, 0)
     differentB = vcb1.angleBetween(vector)
     trace = subset(trace, 2, 4)
+    
+     // move pallet computer
+    compYB = compY
+    if (compX < width - palletW - 7 && compX > palletW + 7 && compY < height / 2 - palletW && compY > palletW + 7 && move == true) {
+      compX = compX + speedC * cos(-differentB)
+      compY = compY + speedC * sin(-differentB)
+    }
+    if (compX > width - palletW - 7) {
+      compX -= 1
+      compY = compY + speedC * sin(-differentB)
+    }
+    if (compX < palletW + 7) {
+      compX += 1
+      compY = compY + speedC * sin(-differentB)
+    }
+    if (compY > height / 2 - palletW) {
+      compX = compX + speedC * cos(-differentB)
+      compY -= 1
+    }
+    if (compY < palletW + 7) {
+      compX = compX + speedC * cos(-differentB)
+      compY += 1
+    }
+
+  }
+
+
+  if (dist(compX, compY, Ball[0].x, Ball[0].y) <= Ball[0].w + palletW & botsen == true) {
+    move = false
+    if (differentB < 90 && differentB > 0 || differentB > -180 && differentB < -90) {
+      newDirection = 90 - angle + differentB
+    }
+    if (differentB <= 180 && differentB >= 90 || differentB >= -90 && differentB <= 0) {
+      newDirection = 90 - angle + differentB + 180
+    }
+    botsen = false
+    setTimeout(Botsen, 500)
+  }
+  if (move == false) {
+    setTimeout(bewegen, 500)
+  }
   
