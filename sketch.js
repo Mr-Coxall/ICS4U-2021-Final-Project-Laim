@@ -111,8 +111,8 @@ function draw() {
     vector = createVector(-1, 0)
     differentB = vcb1.angleBetween(vector)
     trace = subset(trace, 2, 4)
-    
-     // move pallet computer
+
+    // move pallet computer
     compYB = compY
     if (compX < width - palletW - 7 && compX > palletW + 7 && compY < height / 2 - palletW && compY > palletW + 7 && move == true) {
       compX = compX + speedC * cos(-differentB)
@@ -152,4 +152,47 @@ function draw() {
   if (move == false) {
     setTimeout(bewegen, 500)
   }
-  
+
+
+  //   ball
+  fill(colorBal)
+  stroke(colorBal)
+  Ball[0].speedX = speed * cos(newDirection)
+  Ball[0].speedY = speed * sin(newDirection)
+  Ball[0].move()
+  Ball[0].show()
+  Ball[0].bounce()
+  Ball[0].goal()
+
+
+
+  //   score
+  strokeWeight(3)
+  textSize(scoreGrote)
+  noFill()
+  stroke(yourColor)
+  text(pointBlue, scoreX, scoreYY)
+  stroke(colorComputer)
+  text(pointRed, scoreX, scoreCY)
+
+  // end game
+  noStroke()
+  if (pointBlue === maxAantalPunten) {
+    textSize(50)
+    fill(yourColor)
+    text('You win!', 70, 200)
+    text('press R to restart', 70, 250)
+    noLoop()
+  }
+  if (pointRed === maxAantalPunten) {
+    textSize(50)
+    fill(colorComputer)
+    text('computer wins :(', 70, 200)
+    text('press R to restart', 70, 250)
+    noLoop()
+  }
+  stroke(colorLines)
+  strokeWeight(5)
+  point(545, 552)
+
+}
