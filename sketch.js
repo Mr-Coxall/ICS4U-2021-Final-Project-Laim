@@ -1,3 +1,7 @@
+// Final Project Code
+// Created by Liam Fletcher
+// Created on Jan 2022
+
 // Variables
 var speed = 10;
 var newDirection = 30;
@@ -274,4 +278,48 @@ class bal {
   show() {
     ellipse(this.x, this.y, this.w * 2);
   }
+}
+
+function Botsen() {
+  botsen = true;
+}
+
+function startPositie() {
+  Ball[0].y = height / 2;
+  Ball[0].x = width / 2;
+  compX = width / 2;
+  compY = 150;
+  newDirection = 30;
+  loop();
+}
+
+function bewegen() {
+  move = true;
+}
+
+function keyPressed() {
+  if (keyCode === 82) {
+    pointBlue = 0;
+    pointRed = 0;
+    newDirection = 30;
+    Ball[0].y = height / 2;
+    Ball[0].x = width / 2;
+    compX = width / 2;
+    compY = 150;
+    loop();
+  }
+}
+
+function drawArrow(base, vec, myColor) {
+  push();
+  stroke(myColor);
+  strokeWeight(3);
+  fill(myColor);
+  translate(base.x, base.y);
+  line(0, 0, vec.x, vec.y);
+  rotate(vec.heading());
+  let arrowSize = 7;
+  translate(vec.mag() - arrowSize, 0);
+  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  pop();
 }
